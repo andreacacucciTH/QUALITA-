@@ -201,7 +201,10 @@ public class WebServlet extends HttpServlet implements OpenLegConstants {
        * Comments about this field
        */
     @Override
-    public void init() throws ServletException {
+    public synchronized void  init() throws ServletException {
+        
+    
+
 
         String singleViews = new Join<SingleView>() {
             @Override
@@ -264,7 +267,6 @@ public class WebServlet extends HttpServlet implements OpenLegConstants {
         subMap.put("context_path", this.getServletContext().getContextPath());
         String formattedBaseStart = StrSubstitutor.replace(BASE_START, subMap);
         
-        Pattern singlePattern = SINGLE_PATTERN ;
         
         SINGLE_PATTERN = Pattern.compile(
                 TextFormatter.append(
