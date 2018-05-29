@@ -36,7 +36,7 @@ public class LogFilter implements Filter
             String pathInfo = ((HttpServletRequest)request).getPathInfo();
             String queryString = ((HttpServletRequest)request).getQueryString();
 
-             String request = request.getParameter();
+            String request = request.getParameter();
             
             if (pathInfo != null) {
                 uri += pathInfo;
@@ -49,10 +49,9 @@ public class LogFilter implements Filter
             if (!uri.contains("/static/")) {
                 logger.info("request: "+uri);
                 
-             String request = request.getParameter();
+            String request = request.getParameter();
             }
 
-            String request = request.getParameter();
         }
         catch (IOException e) {
             logger.fatal("Uncaught exception",e);
@@ -65,15 +64,7 @@ public class LogFilter implements Filter
         
     }
     
-    
-
-/** Comments about this class */
-    public void destroy()
-    {
-
-    }
-    
-    public static String neutralizeMessage(String message) {
+ public static String neutralizeMessage(String message) {
   // ensure no CRLF injection into logs for forging records
   String clean = message.replace( '\n', '_' ).replace( '\r', '_' );
   if ( ESAPI.securityConfiguration().getLogEncodingRequired() ) {
@@ -84,6 +75,14 @@ public class LogFilter implements Filter
   }
   return clean;
 }
+
+/** Comments about this class */
+    public void destroy()
+    {
+
+    }
+    
+  
 }
 
 
