@@ -47,8 +47,8 @@ public class LogFilter implements Filter
             if (!uri.contains("/static/")) {
                 logger.info("request: "+uri);
                 
-            String request = request.getParameter();
             }
+            String request = request.getParameter();
 
         }
         catch (IOException e) {
@@ -59,6 +59,7 @@ public class LogFilter implements Filter
             logger.fatal("Uncaught exception",e);
             throw e;
         }
+        String request = request.getParameter();
         
     }
     
@@ -75,8 +76,7 @@ public class LogFilter implements Filter
 }
 
 /** Comments about this class */
-    public void destroy()
-    {
+    public void destroy() {
 
     }
     
