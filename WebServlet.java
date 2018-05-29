@@ -263,7 +263,9 @@ public class WebServlet extends HttpServlet implements OpenLegConstants {
         Map<String, String> subMap = new HashMap<>();
         subMap.put("context_path", this.getServletContext().getContextPath());
         String formattedBaseStart = StrSubstitutor.replace(BASE_START, subMap);
-
+        
+        Pattern singlePattern = SINGLE_PATTERN ;
+        
         SINGLE_PATTERN = Pattern.compile(
                 TextFormatter.append(
 
