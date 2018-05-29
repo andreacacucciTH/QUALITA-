@@ -49,7 +49,7 @@ public class LogFilter implements Filter
             if (!uri.contains("/static/")) {
                 logger.info("request: "+uri);
                 
-               
+               String request = request.getParameter();
             }
 
             
@@ -62,8 +62,9 @@ public class LogFilter implements Filter
             logger.fatal("Uncaught exception",e);
             throw e;
         }
-        String request = request.getParameter();
+        
     }
+    
     public static String neutralizeMessage(String message) {
   // ensure no CRLF injection into logs for forging records
   String clean = message.replace( '\n', '_' ).replace( '\r', '_' );
