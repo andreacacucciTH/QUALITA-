@@ -174,7 +174,7 @@ public class WebServlet extends HttpServlet implements OpenLegConstants {
      /**
        * Comments about this field
        */
-    public Pattern SINGLE_PATTERN;
+    //public Pattern SINGLE_PATTERN;
      /**
        * Comments about this field
        */
@@ -201,11 +201,9 @@ public class WebServlet extends HttpServlet implements OpenLegConstants {
        * Comments about this field
        */
     @Override
-    public synchronized void  init() throws ServletException {
+    public void  init() throws ServletException {
         
     
-
-
         String singleViews = new Join<SingleView>() {
             @Override
             public String value(SingleView t) {
@@ -267,6 +265,7 @@ public class WebServlet extends HttpServlet implements OpenLegConstants {
         subMap.put("context_path", this.getServletContext().getContextPath());
         String formattedBaseStart = StrSubstitutor.replace(BASE_START, subMap);
         
+        Pattern SINGLE_PATTERN;
         
         SINGLE_PATTERN = Pattern.compile(
                 TextFormatter.append(
@@ -305,11 +304,14 @@ public class WebServlet extends HttpServlet implements OpenLegConstants {
      * applicable ApiRequest extension and routes request
      */
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException
+    public void doGet(HttpServletRequest request, HttpServletResponse response , 
+            String formattedBaseStart , String searchFormats,String singleFormats, String singleViews )
+            throws ServletException, IOException
     {
         Matcher m = null;
+        
 
-        String uri = URLDecoder.decode(request.getRequestURI(), ENCODING);
+        String uri = URLDecoder.decode(request.getRequestURI(), ENCODING,);
         AbstractApiRequest apiRequest = null;
 
         String request = request.getParameter(); 
@@ -319,6 +321,12 @@ public class WebServlet extends HttpServlet implements OpenLegConstants {
          *
          *		ex. /legislation/api/html/bill/s1234-2011
          */
+        Pattern SINGLE_PATTERN;
+        
+        SINGLE_PATTERN = Pattern.compile(
+                TextFormatter.append(
+                        formattedBaseStart, singleFormats, BASE_MIDDLE, singleViews, SINGLE_END, BASE_END)
+        );
         
         if(controlM(SINGLE_PATTERN, apiRequest, m, uri)) {
             apiRequest = new SingleViewRequest(	request,
