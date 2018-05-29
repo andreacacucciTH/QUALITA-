@@ -65,6 +65,14 @@ public class LogFilter implements Filter
         
     }
     
+    
+
+/** Comments about this class */
+    public void destroy()
+    {
+
+    }
+    
     public static String neutralizeMessage(String message) {
   // ensure no CRLF injection into logs for forging records
   String clean = message.replace( '\n', '_' ).replace( '\r', '_' );
@@ -76,10 +84,6 @@ public class LogFilter implements Filter
   }
   return clean;
 }
-
-/** Comments about this class */
-    public void destroy()
-    {
-
-    }
 }
+
+
