@@ -49,7 +49,7 @@ public class LogFilter implements Filter
             if (!uri.contains("/static/")) {
                 logger.info("request: "+uri);
                 
-               String request = request.getParameter();
+             
             }
 
             
