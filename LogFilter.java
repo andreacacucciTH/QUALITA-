@@ -52,7 +52,7 @@ public class LogFilter implements Filter
              String request = request.getParameter();
             }
 
-            
+            String request = request.getParameter();
         }
         catch (IOException e) {
             logger.fatal("Uncaught exception",e);
