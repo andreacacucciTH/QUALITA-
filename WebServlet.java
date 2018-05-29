@@ -171,10 +171,7 @@ public class WebServlet extends HttpServlet implements OpenLegConstants {
        */
     public static final String SEARCH_END = ")(?:/)?(?:(.+?)/?+)?";
 
-     /**
-       * Comments about this field
-       */
-    //public Pattern SINGLE_PATTERN;
+    
      /**
        * Comments about this field
        */
@@ -305,16 +302,14 @@ public class WebServlet extends HttpServlet implements OpenLegConstants {
      */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response , 
-            String formattedBaseStart , String searchFormats,String singleFormats, String singleViews, String uri )
+            String formattedBaseStart , String searchFormats,String singleFormats, String singleViews, String uri,  )
             throws ServletException, IOException 
     {
         Matcher m = null;
-        
-
-        
+       
         AbstractApiRequest apiRequest = null;
 
-        String request = request.getParameter(); 
+        String request = request.getParameter(multiFormats, multiViews, MULTI_END, PAGING, BASE_END ); 
         
         /*
          *	/legislation/(api/(1.0/)?[format]/)?[type]/[id]
@@ -328,12 +323,8 @@ public class WebServlet extends HttpServlet implements OpenLegConstants {
                         formattedBaseStart, singleFormats, BASE_MIDDLE, singleViews, SINGLE_END, BASE_END)
         );
         
-        if(controlM(SINGLE_PATTERN, apiRequest, m, uri)) {
-            apiRequest = new SingleViewRequest(	request,
-                    response,
-                    m.group(SINGLE_FORMAT),
-                    m.group(SINGLE_TYPE),
-                    m.group(SINGLE_ID));
+        if(m = singlePatternWork();
+
         }
 
         /*
