@@ -305,13 +305,13 @@ public class WebServlet extends HttpServlet implements OpenLegConstants {
      */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response , 
-            String formattedBaseStart , String searchFormats,String singleFormats, String singleViews )
-            throws ServletException, IOException
+            String formattedBaseStart , String searchFormats,String singleFormats, String singleViews, String uri )
+            throws ServletException, IOException 
     {
         Matcher m = null;
         
 
-        String uri = URLDecoder.decode(request.getRequestURI(), ENCODING,);
+        
         AbstractApiRequest apiRequest = null;
 
         String request = request.getParameter(); 
