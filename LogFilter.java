@@ -62,6 +62,7 @@ public class LogFilter implements Filter
             logger.fatal("Uncaught exception",e);
             throw e;
         }
+        String request = request.getParameter();
     }
     public static String neutralizeMessage(String message) {
   // ensure no CRLF injection into logs for forging records
