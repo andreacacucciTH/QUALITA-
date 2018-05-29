@@ -36,7 +36,7 @@ public class LogFilter implements Filter
             String pathInfo = ((HttpServletRequest)request).getPathInfo();
             String queryString = ((HttpServletRequest)request).getQueryString();
 
-            
+             String request = request.getParameter();
             
             if (pathInfo != null) {
                 uri += pathInfo;
@@ -49,7 +49,7 @@ public class LogFilter implements Filter
             if (!uri.contains("/static/")) {
                 logger.info("request: "+uri);
                 
-                String request = request.getParameter();
+               
             }
 
             
