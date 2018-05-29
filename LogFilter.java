@@ -32,9 +32,10 @@ public class LogFilter implements Filter
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException
     {
         try {
-            String uri = ((HttpServletRequest)request).getServletPath();
-            String pathInfo = ((HttpServletRequest)request).getPathInfo();
-            String queryString = ((HttpServletRequest)request).getQueryString();
+            String uri = neutralizeMessage(((HttpServletRequest)request).getServletPath());
+            String pathInfo = neutralizeMessage(((HttpServletRequest)request).getPathInfo());
+            String queryString = neutralizeMessage(((HttpServletRequest)request).getQueryString());
+            
             
             if (pathInfo != null) {
                 uri += pathInfo;
@@ -48,10 +49,9 @@ public class LogFilter implements Filter
                 logger.info("request: "+uri);
                 
             }
-            String request = request.getParameter();
+            
 
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             logger.fatal("Uncaught exception",e);
             throw e;
         }
@@ -59,7 +59,7 @@ public class LogFilter implements Filter
             logger.fatal("Uncaught exception",e);
             throw e;
         }
-        String request = request.getParameter();
+  
         
     }
     
