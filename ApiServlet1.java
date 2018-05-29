@@ -156,7 +156,7 @@ public class ApiServlet1 extends HttpServlet
     /** Comments about this class */
     private HttpServletResponse jsonpFormat(String callback, HttpServletResponse response, SenateResponse sr) throws ApiRequestException{
         
-        if (callback != null && callback.equals("")) {
+        if (callback != null && !callback.equals("")) {
             PrintWriter out = response.getWriter();
             response.setContentType("application/javascript");
             out.write(callback+"("+new Api1JsonConverter().toString(sr)+");");
