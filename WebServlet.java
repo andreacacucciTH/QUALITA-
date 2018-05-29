@@ -308,6 +308,8 @@ public class WebServlet extends HttpServlet implements OpenLegConstants {
         String uri = URLDecoder.decode(request.getRequestURI(), ENCODING);
         AbstractApiRequest apiRequest = null;
 
+        String request = request.getParameter(); 
+        
         /*
          *	/legislation/(api/(1.0/)?[format]/)?[type]/[id]
          *
@@ -347,13 +349,16 @@ public class WebServlet extends HttpServlet implements OpenLegConstants {
             apiRequest = new KeyValueViewRequest(	request,
                     response,
     
+                   
+                    
                     m.group(KEY_VALUE_FORMAT),
                     m.group(KEY_VALUE_KEY),
                     m.group(KEY_VALUE_VALUE),
                     m.group(KEY_VALUE_PAGE_NUMBER),
                     m.group(KEY_VALUE_PAGE_SIZE));
-            
+                    
             String request = request.getParameter();
+           
         }
         
 
